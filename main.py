@@ -2,14 +2,16 @@ import sys
 
 import sqlite3
 
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QDialog
 
+from main_ui import Ui_MainWindow
+from addEditCoffeeForm_ui import Ui_Dialog
 
-class EmployeeDlg(QDialog):
+
+class EmployeeDlg(QDialog, Ui_Dialog):
     def __init__(self, parent=None, num=None):
         super().__init__(parent)
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
 
         self.parent = parent
         self.num = num
@@ -112,10 +114,10 @@ class EmployeeDlg(QDialog):
             print(e)
 
 
-class MyWidget(QMainWindow):
+class MyWidget(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
 
         self.tableWidget.setColumnCount(7)
         self.tableWidget.setHorizontalHeaderLabels(('Название', 'Сорт', 'Степень обжарки',
@@ -156,7 +158,7 @@ def get_write_data(data_id=None):
 
 
 if __name__ == '__main__':
-    con = sqlite3.connect("coffee.sqlite")
+    con = sqlite3.connect("./data/coffee.sqlite")
     cur = con.cursor()
 
     app = QApplication(sys.argv)
