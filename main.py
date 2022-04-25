@@ -8,7 +8,6 @@ from main_ui import Ui_MainWindow
 from addEditCoffeeForm_ui import Ui_Dialog
 
 
-
 class EmployeeDlg(QDialog, Ui_Dialog):
     def __init__(self, parent=None, num=None):
         super().__init__(parent)
